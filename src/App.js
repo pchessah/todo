@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
 function App() {
+  const list =(props) =>{
+    const numbers = props
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div>
+    <h1>To do App</h1>
+    <br/>
+    <fieldset>
+      <legend>
+        Enter Item to do
+      </legend>
+      <input type="text" value=""/>
+      <br/>
+      <button type="submit">Enter</button>
+    </fieldset>
+    <br/>
+    <h2>The list </h2>
+
+  </div>
   );
 }
 
