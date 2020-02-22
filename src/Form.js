@@ -1,66 +1,38 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: "", list: [] };
-  }
+function Form() {
+  const [list, setList] = useState([""]);
+  const [listItem, setItemList] = useState("");
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
+  const handleChange = e => {
+    setItemList(e.target.value);
   };
 
-  handleSubmit = event => {
-    this.setState(state => {
-      return {
-        list: state.list.concat(this.state.value)
-      };
-    });
+  const handleSubmit = e => {
+    e.preventDefault();
+    setList([...list, listItem]);
   };
 
-  componentDidMount (){
-    try{
-      const json = localStorage.getItem("list")
-      const list = JSON.parse(json)
-
-      if (list){
-        this.setState(()=>({list}))
-      }
-    } catch (e) {}
-  }
-
-  componentDidUpdate(prevProps, prev_state){
-    if(prev_state.list.length !== this.state.list.length){
-      const json = JSON.stringify(this.state.list)
-      localStorage.setItem('list', json)
-    }
-
-  }
-
-  render() {
-    return (
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          What would you like to do?
+          <input type="text" value={listItem} onChange={handleChange} />
+        </label>
+        <button type="submit">Enter</button>
+      </form>
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <legend>Enter Item to do</legend>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <br />
-          <button type="submit">Enter</button>
-        </form>
-        <div>
-          <h2>The List</h2>
-          <ul>
-            {this.state.list.map(item => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
+        <h3>You have the following things to do</h3>
+        {list.map((item, index) => {
+          return (
+            <ul>
+              <li key={index}>{item}</li>
+            </ul>
+          );
+        })}
       </div>
-    );
-  }
+    </div>
+  );
 }
-
 export default Form;

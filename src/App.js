@@ -4,11 +4,9 @@ import Form from "./Form";
 function App() {
   return (
     <div>
-      <h1>To do App</h1>
+      <h1>Todo List</h1>
       <br />
       <Form />
-      <br />
-     
     </div>
   );
 }
