@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Form() {
-  const [list, setList] = useState([""]);
+  const [list, setList] = useState([]);
   const [listItem, setItemList] = useState("");
 
   const handleChange = e => {
@@ -11,26 +11,34 @@ function Form() {
   const handleSubmit = e => {
     e.preventDefault();
     setList([...list, listItem]);
+    setItemList("");
+  };
+
+  const handleDelete = e => {
+    const index = e.target.getAttribute("key")
+    setList(list.filter(item => list.key !== index))
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label>
-          What would you like to do?
+          What would you like to do?{"   "}
           <input type="text" value={listItem} onChange={handleChange} />
         </label>
         <button type="submit">Enter</button>
       </form>
       <div>
-        <h3>You have the following things to do</h3>
-        {list.map((item, index) => {
-          return (
-            <ul>
-              <li key={index}>{item}</li>
-            </ul>
-          );
-        })}
+        {list &&
+          list.map((item, index) => {
+            return (
+              <ul>
+                <li key={item.index}>{item}</li>
+                <button> Edit </button>{" "}
+                <button onClick={handleDelete}> Delete </button>
+              </ul>
+            );
+          })}
       </div>
     </div>
   );
