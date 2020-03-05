@@ -16,9 +16,11 @@ function Form() {
 
   const handleDelete = ({item}) => {
   const filteredArray = [...list]
-  filteredArray.splice(filteredArray.indexOf(item), 1)
-  setList(filteredArray)
-  };
+  const newList=filteredArray.filter((oneItem) => {
+    return oneItem !== item 
+  })
+  setList(newList)
+}
 
   return (
     <div>
