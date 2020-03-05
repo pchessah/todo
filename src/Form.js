@@ -14,13 +14,21 @@ function Form() {
     setItemList("");
   };
 
-  const handleDelete = ({item}) => {
-  const filteredArray = [...list]
-  const newList=filteredArray.filter((oneItem) => {
-    return oneItem !== item 
-  })
-  setList(newList)
-}
+  const handleDelete = ({ item }) => {
+    const filteredArray = [...list];
+    const newList = filteredArray.filter(oneItem => {
+      return oneItem !== item;
+    });
+    setList(newList);
+  };
+
+  const handleEdit = ({ item }, e) => {
+    let newListItem = window.prompt("Enter edited item");
+    setList([...list, newListItem]);
+    const filteredArray = [...list];
+    filteredArray.splice(filteredArray.indexOf(item), 1, newListItem);
+    setList(filteredArray);
+  };
 
   return (
     <div>
@@ -38,8 +46,14 @@ function Form() {
               <ul>
                 <li key={index} id={index}>
                   {item} <br />
-                  <button> Edit </button>{" "}
-                  <button onClick={()=>handleDelete({item})} > Delete </button>
+                  <button onClick={() => handleEdit({ item })}>
+                    {" "}
+                    Edit{" "}
+                  </button>{" "}
+                  <button onClick={() => handleDelete({ item })}>
+                    {" "}
+                    Delete{" "}
+                  </button>
                 </li>
               </ul>
             );
