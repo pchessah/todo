@@ -14,9 +14,10 @@ function Form() {
     setItemList("");
   };
 
-  const handleDelete = e => {
-    const index = e.target.getAttribute("key")
-    setList(list.filter(item => list.key !== index))
+  const handleDelete = ({item}) => {
+  const filteredArray = [...list]
+  filteredArray.splice(filteredArray.indexOf(item), 1)
+  setList(filteredArray)
   };
 
   return (
@@ -33,9 +34,11 @@ function Form() {
           list.map((item, index) => {
             return (
               <ul>
-                <li key={item.index}>{item}</li>
-                <button> Edit </button>{" "}
-                <button onClick={handleDelete}> Delete </button>
+                <li key={index} id={index}>
+                  {item} <br />
+                  <button> Edit </button>{" "}
+                  <button onClick={()=>handleDelete({item})} > Delete </button>
+                </li>
               </ul>
             );
           })}
