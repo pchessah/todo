@@ -47,19 +47,27 @@ function Form() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          What would you like to do?{"   "}
-          <input type="text" value={listItem} onChange={handleChange} />
-        </label>
-        <button type="submit" className="btn btn-primary">
-          Enter
-        </button>
-        <button onClick={handleReset}> Reset List </button>
-      </form>
+    <div className="container">
+      <div style ={{float:"center"}}>
+        <form onSubmit={handleSubmit}>
+          <label>
+            What would you like to do?{"   "}
+            <input type="text" value={listItem} onChange={handleChange} />
+          </label>
+          <button type="submit" className="btn btn-primary">
+            Enter
+          </button>
+          <button
+            style={{ float: "right" }}
+            onClick={handleReset}
+            className="btn btn-secondary"
+          >
+            Reset List
+          </button>
+        </form>
+      </div>
       <h3>Tasks to be done</h3>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>#</th>
@@ -109,7 +117,7 @@ function Form() {
       <br />
       <hr />
       <h2>Completed tasks</h2>
-      <table>
+      <table className="table table-dark">
         <thead>
           <tr>
             <th> # </th>
